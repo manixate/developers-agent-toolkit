@@ -1,0 +1,44 @@
+import js from '@eslint/js';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import prettier from 'eslint-plugin-prettier';
+import importPlugin from 'eslint-plugin-import';
+import jest from 'eslint-plugin-jest';
+import prettierConfig from 'eslint-config-prettier';
+import globals from 'globals';
+
+export default [
+  js.configs.recommended,
+  {
+    files: ['src/**/*.ts', 'src/**/*.js'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: 'module',
+        project: './tsconfig.json',
+      },
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+      prettier,
+      import: importPlugin,
+      jest,
+    },
+    rules: {
+      ...tseslint.configs.recommended.rules,
+      ...jest.configs.recommended.rules,
+      'prettier/prettier': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+  prettierConfig,
+];

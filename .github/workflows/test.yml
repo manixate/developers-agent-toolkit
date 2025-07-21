@@ -10,20 +10,25 @@ name: Build & Test
     - cron: 0 16 * * *
   workflow_dispatch:
 jobs:
-  build:
+  typescript-build:
+    name: Test - Typescript
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./typescript
+
     strategy:
       matrix:
         node-version:
-          - 10.x
-          - 11.x
-          - 12.x
-          - 13.x
-          - 14.x
+          - 18.x
+          - 20.x
+          - 22.x
+          - 24.x
     steps:
       - uses: actions/checkout@v2
       - name: 'Use Node.js ${{ matrix.node-version }}'
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: '${{ matrix.node-version }}'
       - run: npm ci
