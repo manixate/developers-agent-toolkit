@@ -1,0 +1,157 @@
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { tools } from '@/shared/tools';
+import { ToolContext } from '@/shared/types';
+
+export interface MastercardDevelopersMCPConfig {
+  service?: string;
+  apiSpecification?: string;
+}
+
+export class MastercardDevelopersMCPServer extends McpServer {
+  constructor(config: MastercardDevelopersMCPConfig = {}) {
+    super({
+      name: 'mastercard-developers-mcp',
+      version: '0.1.0',
+      capabilities: {
+        tools: {},
+      },
+    });
+
+    this.registerAllTools(config);
+  }
+
+  private registerAllTools(config: MastercardDevelopersMCPConfig) {
+    const context = buildContext(config);
+
+    const availableTools = tools(context);
+    const enabledTools = availableTools.filter((tool) => {
+      // If serviceId is provided, disable the services list tool
+      if (context.serviceId && tool.method === 'get-services-list') {
+        return false;
+      }
+
+      return true;
+    });
+
+    enabledTools.forEach((tool) => {
+      this.tool(
+        tool.method,
+        tool.description,
+        tool.parameters.shape,
+        async (params: any) => {
+          try {
+            const result = await tool.execute(params);
+            return { content: [{ type: 'text' as const, text: result }] };
+          } catch (error) {
+            const message =
+              error instanceof Error ? error.message : String(error);
+            return {
+              content: [
+                { type: 'text' as const, text: message, isError: true },
+              ],
+            };
+          }
+        }
+      );
+    });
+  }
+}
+
+export function buildContext(
+  config: MastercardDevelopersMCPConfig
+): ToolContext {
+  const context: ToolContext = {};
+  if (config.service != null) {
+    const serviceId = parseServiceIdFromUrl(config.service);
+    if (serviceId == null) {
+      throw new Error(
+        'Invalid service URL provided. It should be in the format: https://developer.mastercard.com/<service-id>/documentation/**'
+      );
+    }
+
+    context.serviceId = serviceId;
+  } else if (config.apiSpecification != null) {
+    const parsed = parseAPISpecificationPathAndServiceId(
+      config.apiSpecification
+    );
+    if (parsed?.serviceId == null || parsed?.apiSpecificationPath == null) {
+      throw new Error(
+        'Invalid API specification path provided. It should be in the format: https://static.developer.mastercard.com/content/<service-id>/swagger/<nested-file-path>.yaml'
+      );
+    }
+
+    context.serviceId = parsed.serviceId;
+    context.apiSpecificationPath = parsed.apiSpecificationPath;
+  }
+
+  return context;
+}
+
+function validateServiceId(serviceId: string): boolean {
+  return /^[a-z]+(?:-[a-z0-9]+)*$/i.test(serviceId);
+}
+
+function parseServiceIdFromUrl(input: string): string | null {
+  try {
+    // Extract from https://developer.mastercard.com/<service-id>/documentation/**
+    const url = new URL(input);
+
+    if (url.hostname !== 'developer.mastercard.com') {
+      return null;
+    }
+
+    const pathParts = url.pathname.split('/').filter((part) => part.length > 0);
+    // Path should be: /<service-id>/documentation/...
+    if (pathParts.length >= 2 && pathParts[1] === 'documentation') {
+      const serviceId = pathParts[0];
+      if (serviceId && validateServiceId(serviceId)) {
+        return serviceId.toLowerCase();
+      }
+    }
+
+    return null;
+  } catch {
+    // Not a valid URL, return null
+    return null;
+  }
+}
+
+function parseAPISpecificationPathAndServiceId(
+  input: string
+): { serviceId: string; apiSpecificationPath: string } | null {
+  try {
+    // Try to parse as URL first
+    const url = new URL(input);
+
+    // Handle full URL: https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml
+    if (url.hostname !== 'static.developer.mastercard.com') {
+      return null;
+    }
+    const pathParts = url.pathname.split('/').filter((part) => part.length > 0);
+    // Path should be: content/<service-id>/swagger/<nested-file-path>.yaml
+    if (
+      pathParts.length >= 4 &&
+      pathParts[0] === 'content' &&
+      pathParts[2] === 'swagger'
+    ) {
+      const serviceId = pathParts[1];
+      const file = pathParts.slice(3).join('/');
+
+      if (
+        serviceId &&
+        file &&
+        validateServiceId(serviceId) &&
+        file.endsWith('.yaml')
+      ) {
+        return {
+          serviceId: serviceId.toLowerCase(),
+          apiSpecificationPath: `/${serviceId.toLowerCase()}/swagger/${file}`,
+        };
+      }
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}

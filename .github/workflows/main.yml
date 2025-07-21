@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  typescript-build:
+    name: Build - TypeScript
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./typescript
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+
+      - name: Install
+        run: npm install --frozen-lockfile
+
+      - name: Build
+        run: npm run build
+
+      - name: Clean
+        run: npm run clean
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Prettier
+        run: npm run format:check
+
+      - name: Test
+        run: npm run test
+
+  modelcontextprotocol-build:
+    name: Build - Model Context Protocol
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./modelcontextprotocol
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Clean
+        run: npm run clean
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Prettier
+        run: npm run format:check
+
+      - name: Test
+        run: npm run test
