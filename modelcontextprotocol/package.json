@@ -25,7 +25,7 @@
     "lint": "eslint \"./**/*.ts*\"",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "cd ../ && husky modelcontextprotocol/.husky"
   },
   "keywords": [
     "mcp",
@@ -42,11 +42,13 @@
     "@eslint/js": "^9.31.0",
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^28.14.0",
     "eslint-plugin-prettier": "^5.5.3",
+    "globals": "^16.3.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "lint-staged": "^16.1.2",
@@ -62,7 +64,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --ignore-unknown --ignore-path .gitignore --write",
-      "eslint --cache --cache-strategy content --ext .js,.ts --ignore-path .gitignore --fix"
+      "eslint --cache --cache-strategy content --ext .js,.ts --fix"
     ],
     "*.{yml,json,md,html,css,scss,sass}": [
       "prettier --ignore-unknown --ignore-path .gitignore --write"

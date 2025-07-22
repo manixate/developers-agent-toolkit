@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import fetch from 'node-fetch';
 
 const PathSchema = z
   .string()
@@ -18,40 +19,37 @@ export class MastercardAPIClient {
     endpoint: string,
     params?: Record<string, string>
   ): Promise<string> {
-    try {
-      const url = new URL(endpoint, this.baseUrl);
-
-      // Ensure the constructed URL is still within the expected domain
-      if (url.hostname !== this.baseUrl.hostname) {
-        throw new Error('Invalid endpoint: URL hostname mismatch');
-      }
-
-      if (params) {
-        const searchParams = new URLSearchParams(params);
-        url.search = searchParams.toString();
-      }
-
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'User-Agent': 'mastercard-developers-mcp',
-        },
-      });
-
-      if (!response.ok) {
-        // Don't expose detailed error information
-        throw new Error(
-          `Request failed with status ${response.status} - ${url.toString()}`
-        );
-      }
-
-      return response.text();
-    } catch (error) {
-      if (error instanceof TypeError && error.message.includes('Invalid URL')) {
-        throw new Error('Invalid endpoint URL');
-      }
-      throw error;
+    if (!URL.canParse(endpoint, this.baseUrl)) {
+      throw new Error(`Invalid endpoint ${endpoint}`);
     }
+
+    const url = new URL(endpoint, this.baseUrl);
+
+    // Ensure the constructed URL is still within the expected domain
+    if (url.hostname !== this.baseUrl.hostname) {
+      throw new Error('Invalid endpoint: URL hostname mismatch');
+    }
+
+    if (params) {
+      const searchParams = new URLSearchParams(params);
+      url.search = searchParams.toString();
+    }
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'User-Agent': 'mastercard-developers-mcp',
+      },
+    });
+
+    if (!response.ok) {
+      // Don't expose detailed error information
+      throw new Error(
+        `Request failed with status ${response.status} - ${url.toString()}`
+      );
+    }
+
+    return response.text();
   }
 
   /**

@@ -6,8 +6,13 @@ import importPlugin from 'eslint-plugin-import';
 import jest from 'eslint-plugin-jest';
 import prettierConfig from 'eslint-config-prettier';
 import globals from 'globals';
+import { includeIgnoreFile } from "@eslint/compat";
+import { URL, fileURLToPath } from "node:url";
+
+const gitignorePath = fileURLToPath(new URL(".gitignore", import.meta.url));
 
 export default [
+  includeIgnoreFile(gitignorePath),
   js.configs.recommended,
   {
     files: ['**/*.ts', '**/*.js'],
