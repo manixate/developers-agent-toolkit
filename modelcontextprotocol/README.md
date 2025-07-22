@@ -44,7 +44,7 @@ This MCP server acts as a bridge between MCP clients and Mastercard Developers r
 
 ## Configuration Options
 
-You can pre-configure the server with a specific service or API specification by passing them as arguments. 
+You can pre-configure the server with a specific service or API specification by passing them as arguments.
 This is useful when you are working with a specific service, and you want to focus your agents
 
 - `service`: URL of the documentation of a service that you want the MCP to focus on e.g. `https://developer.mastercard.com/mdes-customer-service/documentation`
@@ -103,6 +103,7 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
 ```
 
 ## Usage with VSCode
+
 For quick installation, use one of the one-click installation buttons below:
 
 [![Install with NPX in VS Code](https://img.shields.io/badge/VS_Code-NPM-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=mastercard-developers&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mastercard-developers-mcp%22%5D%7D) [![Install with NPX in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-NPM-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=mastercard-developers&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mastercard-developers-mcp%22%5D%7D&quality=insiders)
@@ -114,16 +115,14 @@ Optionally, you can add it to a file called .vscode/mcp.json in your workspace. 
 > Note that the mcp key is not needed in the .vscode/mcp.json file.
 
 ### NPX
+
 ```json
 {
   "mcp": {
     "servers": {
       "memory": {
         "command": "npx",
-        "args": [
-          "-y",
-          "mastercard-developers-mcp"
-        ]
+        "args": ["-y", "mastercard-developers-mcp"]
       }
     }
   }
@@ -147,14 +146,15 @@ Pre-requisites: Node.js 18+
    npm run build
    ```
 3. Run tests:
-    ```bash
-    npm run test
-    ```
+
+   ```bash
+   npm run test
+   ```
 
 4. Start the server:
    ```bash
     npm run start
-    ```
+   ```
 
 Watch for changes during development:
 
@@ -165,6 +165,7 @@ npm run watch
 The server runs on stdio and will be available for MCP client connections.
 
 #### With Configuration Options
+
 ```bash
 # Pre-configure with a documentation URL
 npm run start -- --service=https://developer.mastercard.com/open-banking-us/documentation/
@@ -174,6 +175,7 @@ npm run start -- --api-specification=https://static.developer.mastercard.com/con
 ```
 
 ### Debugging the server
+
 ```bash
 npx @modelcontextprotocol/inspector node dist/index.js
 ```

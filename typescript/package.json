@@ -62,7 +62,7 @@
     "zod": "^3.24.4"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "*.{mjs,js,jsx,ts,tsx}": [
       "prettier --ignore-unknown --ignore-path .gitignore --write",
       "eslint --cache --cache-strategy content --ext .js,.ts --fix"
     ],
