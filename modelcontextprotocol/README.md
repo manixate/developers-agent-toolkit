@@ -35,25 +35,28 @@ This MCP server acts as a bridge between MCP clients and Mastercard Developers r
 Start the MCP server:
 
 ```bash
-npm start
+npm run start
 ```
 
 The server runs on stdio and will be available for MCP client connections.
 
 ### With Configuration Options
 
-You can pre-configure the server with a specific service or API specification. This is useful when you are working with a specific service, and you want to focus your agents:
+You can pre-configure the server with a specific service or API specification. This is useful when you are working with a specific service, and you want to focus your agents
+
+- `service`: URL of the documentation of a service that you want the MCP to focus on e.g. `https://developer.mastercard.com/mdes-customer-service/documentation`
+- `api-specification`: URL of the API specification that you want the MCP tools to focus on e.g. `https://static.developer.mastercard.com/content/match/swagger/match-pro.yaml`. You can get the link from `Download Spec` button in the `API Reference` page of service. 
+NOTE: Specifying this will override any value provided in `service` configuration.
 
 ```bash
 # Pre-configure with a documentation URL
-npm start -- --service=https://developer.mastercard.com/open-banking-us/documentation/
+npm run start -- --service=https://developer.mastercard.com/open-banking-us/documentation/
 
 # Pre-configure with an API specification path
-npm start -- --api-specification=https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml
+npm run start -- --api-specification=https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml
 ```
 
 If you specify `service` or `api-specification` then the `get-services-list` tool will be disabled.
-If you specify `api-specification` then it will override the `service` configuration.
 
 ### Integration with MCP Clients
 

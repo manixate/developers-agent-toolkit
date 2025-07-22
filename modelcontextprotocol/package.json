@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.3",
+    "mastercard-developers-agent-toolkit": "latest",
     "zod": "^3.24.4"
   }
 }
