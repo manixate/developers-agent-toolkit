@@ -12,7 +12,8 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint \"./**/*.ts*\"",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "files": [
     "mcp/**/*",
@@ -45,7 +46,9 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^28.14.0",
     "eslint-plugin-prettier": "^5.5.3",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
+    "lint-staged": "^16.1.2",
     "msw": "^2.10.4",
     "prettier": "^3.6.2",
     "ts-jest": "^29.2.5",
@@ -56,5 +59,14 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.3",
     "zod": "^3.24.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --ignore-unknown --ignore-path .gitignore --write",
+      "eslint --cache --cache-strategy content --ext .js,.ts --ignore-path .gitignore --fix"
+    ],
+    "*.{yml,json,md,html,css,scss,sass}": [
+      "prettier --ignore-unknown --ignore-path .gitignore --write"
+    ]
   }
 }
