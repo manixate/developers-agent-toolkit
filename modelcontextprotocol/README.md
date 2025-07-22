@@ -1,5 +1,10 @@
 # Mastercard Developers MCP Server
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-dark.svg">
+  <img src="https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-light.svg" alt="mastercard developers logo">
+</picture>
+
 A Model Context Protocol (MCP) server that provides access to Mastercard Developers documentation.
 
 ## Overview

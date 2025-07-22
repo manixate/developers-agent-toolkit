@@ -8,7 +8,9 @@
   "bin": "dist/index.js",
   "files": [
     "dist/index.js",
+    "LICENSE",
     "README.md",
+    "VERSION",
     "package.json"
   ],
   "scripts": {
@@ -52,7 +54,6 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.3",
-    "mastercard-developers-agent-toolkit": "latest",
-    "zod": "^3.24.4"
+    "mastercard-developers-agent-toolkit": "^0.1.1"
   }
 }
