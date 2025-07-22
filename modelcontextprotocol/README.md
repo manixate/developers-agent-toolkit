@@ -16,102 +16,6 @@ This MCP server acts as a bridge between MCP clients and Mastercard Developers r
 - Access documentation for each service
 - Retrieve integration guides for OAuth 1.0a and Open Banking
 
-## Prerequisites
-
-- Node.js 18+
-
-## Installation
-
-1. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-2. Build the project:
-   ```bash
-   npm run build
-   ```
-
-## Usage
-
-### As a Standalone MCP Server
-
-Start the MCP server:
-
-```bash
-npm run start
-```
-
-The server runs on stdio and will be available for MCP client connections.
-
-### With Configuration Options
-
-You can pre-configure the server with a specific service or API specification. This is useful when you are working with a specific service, and you want to focus your agents
-
-- `service`: URL of the documentation of a service that you want the MCP to focus on e.g. `https://developer.mastercard.com/mdes-customer-service/documentation`
-- `api-specification`: URL of the API specification that you want the MCP tools to focus on e.g. `https://static.developer.mastercard.com/content/match/swagger/match-pro.yaml`. You can get the link from `Download Spec` button in the `API Reference` page of service.
-  NOTE: Specifying this will override any value provided in `service` configuration.
-
-```bash
-# Pre-configure with a documentation URL
-npm run start -- --service=https://developer.mastercard.com/open-banking-us/documentation/
-
-# Pre-configure with an API specification path
-npm run start -- --api-specification=https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml
-```
-
-If you specify `service` or `api-specification` then the `get-services-list` tool will be disabled.
-
-### Integration with MCP Clients
-
-To use this server with MCP clients like Claude Desktop, add it to your MCP configuration:
-
-```json
-{
-  "mcpServers": {
-    "mastercard-developers": {
-      "command": "npx",
-      "args": ["-y", "mastercard-developers-mcp"]
-    }
-  }
-}
-```
-
-**Service**
-
-```json
-{
-  "mcpServers": {
-    "mastercard-developers": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mastercard-developers-mcp",
-        "--service=https://developer.mastercard.com/open-banking-us/documentation/"
-      ]
-    }
-  }
-}
-```
-
-**API Specification**
-
-```json
-{
-  "mcpServers": {
-    "mastercard-developers": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mastercard-developers-mcp",
-        "--api-specification=https://developer.mastercard.com/open-banking-us/swagger/openbanking-us.yaml"
-      ]
-    }
-  }
-}
-```
-
 ## Available Tools
 
 ### Service Discovery
@@ -138,7 +42,119 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
 
 - **`get-openbanking-integration-guide`**: Retrieves the comprehensive Open Banking integration guide including setup instructions, API usage examples, and implementation best practices.
 
+## Configuration Options
+
+You can pre-configure the server with a specific service or API specification by passing them as arguments. 
+This is useful when you are working with a specific service, and you want to focus your agents
+
+- `service`: URL of the documentation of a service that you want the MCP to focus on e.g. `https://developer.mastercard.com/mdes-customer-service/documentation`
+- `api-specification`: URL of the API specification that you want the MCP tools to focus on e.g. `https://static.developer.mastercard.com/content/match/swagger/match-pro.yaml`. You can get the link from `Download Spec` button in the `API Reference` page of service.
+  NOTE: Specifying this will override any value provided in `service` configuration.
+
+If you specify `service` or `api-specification` then the `get-services-list` tool will be disabled.
+
+## Integration with MCP Clients
+
+To use this server with MCP clients like Claude Desktop, add it to your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "mastercard-developers": {
+      "command": "npx",
+      "args": ["-y", "mastercard-developers-mcp"]
+    }
+  }
+}
+```
+
+**For Specific Service**
+
+```json
+{
+  "mcpServers": {
+    "mastercard-developers": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mastercard-developers-mcp",
+        "--service=https://developer.mastercard.com/open-banking-us/documentation/"
+      ]
+    }
+  }
+}
+```
+
+**For Specific API Specification**
+
+```json
+{
+  "mcpServers": {
+    "mastercard-developers": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mastercard-developers-mcp",
+        "--api-specification=https://developer.mastercard.com/open-banking-us/swagger/openbanking-us.yaml"
+      ]
+    }
+  }
+}
+```
+
+## Usage with VSCode
+For quick installation, use one of the one-click installation buttons below:
+
+[![Install with NPX in VS Code](https://img.shields.io/badge/VS_Code-NPM-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=mastercard-developers&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mastercard-developers-mcp%22%5D%7D) [![Install with NPX in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-NPM-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=mastercard-developers&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mastercard-developers-mcp%22%5D%7D&quality=insiders)
+
+For manual installation, add the following JSON block to your User Settings (JSON) file in VS Code. You can do this by pressing Ctrl + Shift + P and typing Preferences: Open Settings (JSON).
+
+Optionally, you can add it to a file called .vscode/mcp.json in your workspace. This will allow you to share the configuration with others.
+
+> Note that the mcp key is not needed in the .vscode/mcp.json file.
+
+### NPX
+```json
+{
+  "mcp": {
+    "servers": {
+      "memory": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "mastercard-developers-mcp"
+        ]
+      }
+    }
+  }
+}
+```
+
+You can also provide configuration options as arguments, see above for examples.
+
 ## Development
+
+Pre-requisites: Node.js 18+
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Build the project:
+   ```bash
+   npm run build
+   ```
+3. Run tests:
+    ```bash
+    npm run test
+    ```
+
+4. Start the server:
+   ```bash
+    npm run start
+    ```
 
 Watch for changes during development:
 
@@ -146,10 +162,20 @@ Watch for changes during development:
 npm run watch
 ```
 
-Run tests:
+The server runs on stdio and will be available for MCP client connections.
 
+#### With Configuration Options
 ```bash
-npm run test
+# Pre-configure with a documentation URL
+npm run start -- --service=https://developer.mastercard.com/open-banking-us/documentation/
+
+# Pre-configure with an API specification path
+npm run start -- --api-specification=https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml
+```
+
+### Debugging the server
+```bash
+npx @modelcontextprotocol/inspector node dist/index.js
 ```
 
 ## References

@@ -9,6 +9,14 @@ The Mastercard Developers Agent Toolkit allows popular agent frameworks (current
 
 ## Model Context Protocol
 
+We provide a standalone Model Context Protocol (MCP) server that can be used with MCP clients.
+
+```bash
+npx -y mastercard-developers-mcp
+```
+
+For more details for the configuration options, see [modelcontextprotocol](modelcontextprotocol/README.md) directory
+
 ### Installation
 
 If you want to use the package in your project, you can install it using npm:
@@ -38,4 +46,4 @@ main().catch((error) => {
 });
 ```
 
-For more details, checkout `typescript` directory
+For more details, checkout [typescript](typescript/README.md) directory

@@ -25,6 +25,8 @@ You can optionally specify `service` or `apiSpecification` as part of the config
 - `apiSpecification`: URL of the API specification that you want the MCP tools to focus on e.g. `https://static.developer.mastercard.com/content/match/swagger/match-pro.yaml`. You can get the link from `Download Spec` button in the `API Reference` page of service.
   NOTE: This will override any value provided in `service` configuration.
 
+If you specify `service` or `api-specification` then the `get-services-list` tool will be disabled.
+
 ```typescript
 import { MastercardDevelopersMCPServer } from 'mastercard-developers-agent-toolkit/mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
