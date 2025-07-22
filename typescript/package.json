@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "mastercard-developers-agent-toolkit",
   "homepage": "https://github.com/mastercard/developers-agent-toolkit",
   "description": "Agent Toolkit for Mastercard Developers Platform",
@@ -14,6 +14,13 @@
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
+  "files": [
+    "mcp/**/*",
+    "LICENSE",
+    "README.md",
+    "VERSION",
+    "package.json"
+  ],
   "keywords": [
     "agent-toolkit",
     "mcp",
