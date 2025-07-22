@@ -19,10 +19,6 @@ export class MastercardAPIClient {
     endpoint: string,
     params?: Record<string, string>
   ): Promise<string> {
-    if (!URL.canParse(endpoint, this.baseUrl)) {
-      throw new Error(`Invalid endpoint ${endpoint}`);
-    }
-
     const url = new URL(endpoint, this.baseUrl);
 
     // Ensure the constructed URL is still within the expected domain

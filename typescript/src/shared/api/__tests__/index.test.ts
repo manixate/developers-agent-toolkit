@@ -1,26 +1,18 @@
 import { MastercardAPIClient } from '@/shared/api';
-import { http, HttpResponse } from 'msw';
-import { setupServer } from 'msw/node';
+import fetch, { RequestInfo, Response } from 'node-fetch';
 
 const mcd = (path: string) => {
   return new URL(path, 'https://developer.mastercard.com').toString();
 };
 
-const server = setupServer();
+const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
+jest.mock('node-fetch');
 
 describe('MastercardAPIClient', () => {
   let client: MastercardAPIClient;
 
-  beforeAll(() => {
-    server.listen();
-  });
-
   afterEach(() => {
-    server.resetHandlers();
-  });
-
-  afterAll(() => {
-    server.close();
+    mockFetch.mockReset();
   });
 
   beforeEach(() => {
@@ -29,34 +21,34 @@ describe('MastercardAPIClient', () => {
 
   describe('listServices', () => {
     it('should make request to /llms.txt with absolute_urls=false', async () => {
-      server.use(
-        http.get(mcd('/llms.txt'), ({ request }) => {
-          const url = new URL(request.url);
-          expect(url.searchParams.get('absolute_urls')).toBe('false');
-          return HttpResponse.text('services list');
-        })
-      );
+      mockFetch.mockImplementation((url: RequestInfo) => {
+        const urlString = url.toString();
+        const requestUrl = new URL(urlString);
+        expect(requestUrl.searchParams.get('absolute_urls')).toBe('false');
+        expect(urlString).toBe(mcd('/llms.txt?absolute_urls=false'));
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => Promise.resolve('services list'),
+        } as Response);
+      });
 
       const result = await client.listServices();
       expect(result).toBe('services list');
     });
 
     it('should handle network errors', async () => {
-      server.use(
-        http.get(mcd('/llms.txt'), () => {
-          return HttpResponse.error();
-        })
-      );
+      mockFetch.mockRejectedValue(new Error('Network error'));
 
       await expect(client.listServices()).rejects.toThrow();
     });
 
     it('should handle non-ok responses', async () => {
-      server.use(
-        http.get(mcd('/llms.txt'), () => {
-          return new HttpResponse(null, { status: 404 });
-        })
-      );
+      mockFetch.mockResolvedValue({
+        ok: false,
+        status: 404,
+        text: () => Promise.resolve(''),
+      } as Response);
 
       await expect(client.listServices()).rejects.toThrow(
         'Request failed with status 404'
@@ -66,16 +58,19 @@ describe('MastercardAPIClient', () => {
 
   describe('getDocumentation', () => {
     it('should make request to service documentation endpoint', async () => {
-      server.use(
-        http.get(
-          mcd('/open-banking-us/documentation/llms.txt'),
-          ({ request }) => {
-            const url = new URL(request.url);
-            expect(url.searchParams.get('absolute_urls')).toBe('false');
-            return HttpResponse.text('documentation content');
-          }
-        )
-      );
+      mockFetch.mockImplementation((url: RequestInfo) => {
+        const urlString = url.toString();
+        const requestUrl = new URL(urlString);
+        expect(requestUrl.searchParams.get('absolute_urls')).toBe('false');
+        expect(urlString).toBe(
+          mcd('/open-banking-us/documentation/llms.txt?absolute_urls=false')
+        );
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => Promise.resolve('documentation content'),
+        } as Response);
+      });
 
       const result = await client.getDocumentation('open-banking-us');
       expect(result).toBe('documentation content');
@@ -84,17 +79,24 @@ describe('MastercardAPIClient', () => {
 
   describe('getDocumentationSection', () => {
     it('should make request to documentation section endpoint', async () => {
-      server.use(
-        http.get(
-          mcd('/open-banking-us/documentation/llms-full.txt'),
-          ({ request }) => {
-            const url = new URL(request.url);
-            expect(url.searchParams.get('absolute_urls')).toBe('false');
-            expect(url.searchParams.get('section_id')).toBe('getting-started');
-            return HttpResponse.text('section content');
-          }
-        )
-      );
+      mockFetch.mockImplementation((url: RequestInfo) => {
+        const urlString = url.toString();
+        const requestUrl = new URL(urlString);
+        expect(requestUrl.searchParams.get('absolute_urls')).toBe('false');
+        expect(requestUrl.searchParams.get('section_id')).toBe(
+          'getting-started'
+        );
+        expect(urlString).toBe(
+          mcd(
+            '/open-banking-us/documentation/llms-full.txt?absolute_urls=false&section_id=getting-started'
+          )
+        );
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => Promise.resolve('section content'),
+        } as Response);
+      });
 
       const result = await client.getDocumentationSection(
         'open-banking-us',
@@ -106,11 +108,17 @@ describe('MastercardAPIClient', () => {
 
   describe('getDocumentationPage', () => {
     it('should make request to specific documentation page', async () => {
-      server.use(
-        http.get(mcd('/open-banking-us/documentation/api-basics'), () => {
-          return HttpResponse.text('page content');
-        })
-      );
+      mockFetch.mockImplementation((url: RequestInfo) => {
+        const urlString = url.toString();
+        expect(urlString).toBe(
+          mcd('/open-banking-us/documentation/api-basics')
+        );
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => Promise.resolve('page content'),
+        } as Response);
+      });
 
       const result = await client.getDocumentationPage(
         '/open-banking-us/documentation/api-basics'
@@ -133,16 +141,19 @@ describe('MastercardAPIClient', () => {
 
   describe('getApiOperations', () => {
     it('should make request to API specification endpoint with summary=true', async () => {
-      server.use(
-        http.get(
-          mcd('/open-banking-us/swagger/openbanking-us.yaml'),
-          ({ request }) => {
-            const url = new URL(request.url);
-            expect(url.searchParams.get('summary')).toBe('true');
-            return HttpResponse.text('operations list');
-          }
-        )
-      );
+      mockFetch.mockImplementation((url: RequestInfo) => {
+        const urlString = url.toString();
+        const requestUrl = new URL(urlString);
+        expect(requestUrl.searchParams.get('summary')).toBe('true');
+        expect(urlString).toBe(
+          mcd('/open-banking-us/swagger/openbanking-us.yaml?summary=true')
+        );
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => Promise.resolve('operations list'),
+        } as Response);
+      });
 
       const result = await client.getApiOperations(
         '/open-banking-us/swagger/openbanking-us.yaml'
@@ -159,17 +170,22 @@ describe('MastercardAPIClient', () => {
 
   describe('getApiOperationDetails', () => {
     it('should make request with method and path parameters', async () => {
-      server.use(
-        http.get(
-          mcd('/open-banking-us/swagger/openbanking-us.yaml'),
-          ({ request }) => {
-            const url = new URL(request.url);
-            expect(url.searchParams.get('method')).toBe('GET');
-            expect(url.searchParams.get('path')).toBe('/accounts');
-            return HttpResponse.text('operation details');
-          }
-        )
-      );
+      mockFetch.mockImplementation((url: RequestInfo) => {
+        const urlString = url.toString();
+        const requestUrl = new URL(urlString);
+        expect(requestUrl.searchParams.get('method')).toBe('GET');
+        expect(requestUrl.searchParams.get('path')).toBe('/accounts');
+        expect(urlString).toBe(
+          mcd(
+            '/open-banking-us/swagger/openbanking-us.yaml?method=GET&path=%2Faccounts'
+          )
+        );
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          text: () => Promise.resolve('operation details'),
+        } as Response);
+      });
 
       const result = await client.getApiOperationDetails(
         '/open-banking-us/swagger/openbanking-us.yaml',
@@ -198,11 +214,7 @@ describe('MastercardAPIClient', () => {
     });
 
     it('should handle network errors gracefully', async () => {
-      server.use(
-        http.get(mcd('/llms.txt'), () => {
-          return HttpResponse.error();
-        })
-      );
+      mockFetch.mockRejectedValue(new Error('Network error'));
 
       await expect(client.listServices()).rejects.toThrow();
     });
