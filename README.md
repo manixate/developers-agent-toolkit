@@ -1,4 +1,5 @@
 # Mastercard Developers Agent Toolkit
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-dark.svg">
   <img src="https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-light.svg" alt="mastercard developers logo">
@@ -10,14 +11,14 @@ The Mastercard Developers Agent Toolkit allows popular agent frameworks (current
 
 ### Installation
 
+If you want to use the package in your project, you can install it using npm:
+
 ```bash
-npm install mastercard-developers-agent-toolkit
+npm install --save mastercard-developers-agent-toolkit
 ```
 
 Requirements
 - Node 18+
-
-For example:
 
 ```javascript
 import { MastercardDevelopersMCPServer } from "mastercard-developers-agent-toolkit/mcp";
