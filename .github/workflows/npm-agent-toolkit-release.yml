@@ -1,4 +1,4 @@
-name: NPM Release mastercard-developers-agent-toolkit
+name: NPM Release @mastercard/developers-agent-toolkit
 
 on:
   workflow_dispatch: {}
