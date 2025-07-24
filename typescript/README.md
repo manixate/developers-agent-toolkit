@@ -10,7 +10,7 @@ The Mastercard Developers Agent Toolkit allows popular agent frameworks (current
 ## Installation
 
 ```bash
-npm install --save mastercard-developers-agent-toolkit
+npm install --save @mastercard/developers-agent-toolkit
 ```
 
 ### Requirements
@@ -28,7 +28,7 @@ You can optionally specify `service` or `apiSpecification` as part of the config
 If you specify `service` or `api-specification` then the `get-services-list` tool will be disabled.
 
 ```typescript
-import { MastercardDevelopersMCPServer } from 'mastercard-developers-agent-toolkit/mcp';
+import { MastercardDevelopersMCPServer } from '@mastercard/developers-agent-toolkit/mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const server = new MastercardDevelopersMCPServer({
