@@ -62,7 +62,7 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
   "mcpServers": {
     "mastercard-developers": {
       "command": "npx",
-      "args": ["-y", "mastercard-developers-mcp"]
+      "args": ["-y", "@mastercard/developers-mcp"]
     }
   }
 }
@@ -77,7 +77,7 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
       "command": "npx",
       "args": [
         "-y",
-        "mastercard-developers-mcp",
+        "@mastercard/developers-mcp",
         "--service=https://developer.mastercard.com/open-banking-us/documentation/"
       ]
     }
@@ -94,7 +94,7 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
       "command": "npx",
       "args": [
         "-y",
-        "mastercard-developers-mcp",
+        "@mastercard/developers-mcp",
         "--api-specification=https://developer.mastercard.com/open-banking-us/swagger/openbanking-us.yaml"
       ]
     }
@@ -106,7 +106,7 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
 
 For quick installation, use one of the one-click installation buttons below:
 
-[![Install with NPX in VS Code](https://img.shields.io/badge/VS_Code-NPM-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=mastercard-developers&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mastercard-developers-mcp%22%5D%7D) [![Install with NPX in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-NPM-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=mastercard-developers&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mastercard-developers-mcp%22%5D%7D&quality=insiders)
+[![Install with NPX in VS Code](https://img.shields.io/badge/VS_Code-NPM-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=mastercard-developers&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mastercard%2Fdevelopers-mcp%22%5D%7D) [![Install with NPX in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-NPM-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=mastercard-developers&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mastercard%2Fdevelopers-mcp%22%5D%7D&quality=insiders)
 
 For manual installation, add the following JSON block to your User Settings (JSON) file in VS Code. You can do this by pressing Ctrl + Shift + P and typing Preferences: Open Settings (JSON).
 
@@ -122,7 +122,7 @@ Optionally, you can add it to a file called .vscode/mcp.json in your workspace. 
     "servers": {
       "memory": {
         "command": "npx",
-        "args": ["-y", "mastercard-developers-mcp"]
+        "args": ["-y", "@mastercard/developers-mcp"]
       }
     }
   }

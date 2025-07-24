@@ -2,6 +2,7 @@
 const esbuild = require('esbuild');
 const fsSync = require('fs');
 const dxt = require('@anthropic-ai/dxt');
+const packageJson = require('./package.json');
 
 // Base build configuration
 const config = {
@@ -54,12 +55,15 @@ async function build() {
 // Run the build
 build();
 
+const packageVersion = packageJson.version;
+const dxtFilename = `mastercard-developers-mcp-${packageVersion}.dxt`;
+
 console.log('📦 Creating DXT extension...');
 dxt.packExtension({
   extensionPath: 'dxt',
-  outputPath: 'mastercard-developers-mcp.dxt',
+  outputPath: dxtFilename,
   silent: true,
 });
 
 console.log('🎉 DXT extension built successfully');
-console.log('Output: mastercard-developers-mcp.dxt');
+console.log(`Output: ${dxtFilename}`);

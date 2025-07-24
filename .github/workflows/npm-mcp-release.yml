@@ -1,4 +1,4 @@
-name: NPM Release mastercard-developers-mcp
+name: NPM Release @mastercard/developers-mcp
 
 on:
   workflow_dispatch: {}
