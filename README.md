@@ -40,7 +40,7 @@ The toolkit provides the following tools for agents to use:
 We provide a standalone Model Context Protocol (MCP) server that can be used with MCP clients.
 
 ```bash
-npx -y mastercard-developers-mcp
+npx -y @mastercard/developers-mcp
 ```
 
 For more details for the configuration options, see [modelcontextprotocol](modelcontextprotocol/README.md) directory

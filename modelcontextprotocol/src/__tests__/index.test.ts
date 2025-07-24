@@ -1,8 +1,8 @@
 import { main, parseArgs } from '..';
-import { MastercardDevelopersMCPServer } from 'mastercard-developers-agent-toolkit/mcp';
+import { MastercardDevelopersMCPServer } from '@mastercard/developers-agent-toolkit/mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
-jest.mock('mastercard-developers-agent-toolkit/mcp');
+jest.mock('@mastercard/developers-agent-toolkit/mcp');
 jest.mock('@modelcontextprotocol/sdk/server/stdio.js');
 
 describe('parseArgs function', () => {
