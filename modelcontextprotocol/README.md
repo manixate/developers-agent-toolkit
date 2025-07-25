@@ -20,7 +20,7 @@ This MCP server acts as a bridge between MCP clients and Mastercard Developers r
 
 ### Service Discovery
 
-- **`get-services-list`**: Lists all available Mastercard Developers Products and Services with their basic information including title, description, and service ID.
+- **`get-services-list`**: Lists all available Mastercard Developers Services with their basic information including title, description, and service id.
 
 ### Documentation
 

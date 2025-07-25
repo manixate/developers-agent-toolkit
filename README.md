@@ -20,7 +20,7 @@ The toolkit provides the following tools for agents to use:
 
 ### Services
 
-* `get-services-list`: Lists all available Mastercard Developers Products and Services with their basic information including title, description, and service id.
+* `get-services-list`: Lists all available Mastercard Developers Services with their basic information including title, description, and service id.
 
 ### Documentation
 

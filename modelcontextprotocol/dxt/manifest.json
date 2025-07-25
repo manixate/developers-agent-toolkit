@@ -36,7 +36,7 @@
   "tools": [
     {
       "name": "get-services-list",
-      "description": "Lists all available Mastercard Developers Products and Services with their basic information including title, description, and service ID."
+      "description": "Lists all available Mastercard Developers Services with their basic information including title, description, and service id."
     },
     {
       "name": "api-operations",

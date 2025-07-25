@@ -3,9 +3,8 @@ import { Tool, ToolContext } from '@/shared/types';
 import api from '@/shared/api';
 
 const getDescription = (_context: ToolContext): string => {
-  return `Lists all available Mastercard Developers Products and Services with their basic information 
-including title, description, and service id.
-IMPORTANT: The response contains both 'Products' (business offerings) and 'Services' (technical APIs with serviceIds). Use "serviceId" for each service for any tools that require serviceId as the parameter.
+  return `Lists all available Mastercard Developers Services with their basic information including title, description, and service id.
+IMPORTANT: Use "serviceId" from service for any tools that require serviceId as the parameter.
 `;
 };
 

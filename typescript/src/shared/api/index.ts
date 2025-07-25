@@ -52,7 +52,10 @@ export class MastercardAPIClient {
    * Retrieve a list of all available Mastercard services
    */
   async listServices(): Promise<string> {
-    return this.request('/llms.txt', { absolute_urls: 'false' });
+    return this.request('/llms.txt', {
+      absolute_urls: 'false',
+      products: 'false',
+    });
   }
 
   /**
