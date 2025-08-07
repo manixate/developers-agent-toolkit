@@ -28,10 +28,10 @@ You can optionally specify `service` or `apiSpecification` as part of the config
 If you specify `service` or `api-specification` then the `get-services-list` tool will be disabled.
 
 ```typescript
-import { MastercardDevelopersMCPServer } from '@mastercard/developers-agent-toolkit/mcp';
+import { MastercardDevelopersAgentToolkit } from '@mastercard/developers-agent-toolkit/mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
-const server = new MastercardDevelopersMCPServer({
+const server = new MastercardDevelopersAgentToolkit({
   configuration: {
     service: 'https://developer.mastercard.com/open-banking-us/documentation',
   },

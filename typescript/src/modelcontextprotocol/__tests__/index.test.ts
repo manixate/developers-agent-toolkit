@@ -1,16 +1,16 @@
-import { MastercardDevelopersMCPServer, buildContext } from '../';
+import { MastercardDevelopersAgentToolkit, buildContext } from '../';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { tools } from '@/shared/tools';
 
 const mockTool = jest.spyOn(McpServer.prototype, 'tool');
 
-describe('MastercardDevelopersMCP', () => {
+describe('MastercardDevelopersAgentToolkit', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it('should register all tools with correct method/description when no config', () => {
-    new MastercardDevelopersMCPServer({});
+    new MastercardDevelopersAgentToolkit({});
 
     const expectedTools = tools({});
     expect(mockTool).toHaveBeenCalledTimes(expectedTools.length);
@@ -23,7 +23,7 @@ describe('MastercardDevelopersMCP', () => {
   });
 
   it('should register context-aware tools when apiSpecificationPath configured', () => {
-    new MastercardDevelopersMCPServer({
+    new MastercardDevelopersAgentToolkit({
       apiSpecification:
         'https://static.developer.mastercard.com/content/service/swagger/path.yaml',
     });
@@ -42,7 +42,7 @@ describe('MastercardDevelopersMCP', () => {
   });
 
   it('should exclude get-services-list when serviceId configured', () => {
-    new MastercardDevelopersMCPServer({
+    new MastercardDevelopersAgentToolkit({
       service: 'https://developer.mastercard.com/test-service/documentation/',
     });
 

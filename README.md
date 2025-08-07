@@ -57,10 +57,10 @@ Requirements
 - Node 18+
 
 ```javascript
-import { MastercardDevelopersMCPServer } from "@mastercard/developers-agent-toolkit/mcp";
+import { MastercardDevelopersAgentToolkit } from "@mastercard/developers-agent-toolkit/mcp";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
-const server = new MastercardDevelopersMCPServer({});
+const server = new MastercardDevelopersAgentToolkit({});
 
 async function main() {
   const transport = new StdioServerTransport();
