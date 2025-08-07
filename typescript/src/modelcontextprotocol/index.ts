@@ -1,17 +1,18 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { tools } from '@/shared/tools';
 import { ToolContext } from '@/shared/types';
+import { version } from '../../package.json';
 
-export interface MastercardDevelopersMCPConfig {
+export interface MastercardDevelopersAgentToolkitConfig {
   service?: string;
   apiSpecification?: string;
 }
 
-export class MastercardDevelopersMCPServer extends McpServer {
-  constructor(config: MastercardDevelopersMCPConfig = {}) {
+export class MastercardDevelopersAgentToolkit extends McpServer {
+  constructor(config: MastercardDevelopersAgentToolkitConfig = {}) {
     super({
       name: 'mastercard-developers-mcp',
-      version: '0.1.0',
+      version: version,
       capabilities: {
         tools: {},
       },
@@ -20,7 +21,7 @@ export class MastercardDevelopersMCPServer extends McpServer {
     this.registerAllTools(config);
   }
 
-  private registerAllTools(config: MastercardDevelopersMCPConfig) {
+  private registerAllTools(config: MastercardDevelopersAgentToolkitConfig) {
     const context = buildContext(config);
 
     const availableTools = tools(context);
@@ -58,7 +59,7 @@ export class MastercardDevelopersMCPServer extends McpServer {
 }
 
 export function buildContext(
-  config: MastercardDevelopersMCPConfig
+  config: MastercardDevelopersAgentToolkitConfig
 ): ToolContext {
   const context: ToolContext = {};
   if (config.service != null) {
