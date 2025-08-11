@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { MastercardDevelopersMCPServer } from '@mastercard/developers-agent-toolkit/mcp';
+import { MastercardDevelopersAgentToolkit } from '@mastercard/developers-agent-toolkit/mcp';
 
 interface ParsedArgs {
   service?: string;
@@ -45,7 +45,7 @@ export async function main(): Promise<void> {
     }),
   };
 
-  const server = new MastercardDevelopersMCPServer(config);
+  const server = new MastercardDevelopersAgentToolkit(config);
 
   const transport = new StdioServerTransport();
   await server.connect(transport);

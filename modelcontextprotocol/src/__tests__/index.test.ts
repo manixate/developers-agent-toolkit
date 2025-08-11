@@ -1,5 +1,5 @@
 import { main, parseArgs } from '..';
-import { MastercardDevelopersMCPServer } from '@mastercard/developers-agent-toolkit/mcp';
+import { MastercardDevelopersAgentToolkit } from '@mastercard/developers-agent-toolkit/mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 jest.mock('@mastercard/developers-agent-toolkit/mcp');
@@ -75,7 +75,7 @@ describe('main function', () => {
 
     await main();
 
-    expect(MastercardDevelopersMCPServer).toHaveBeenCalledWith({});
+    expect(MastercardDevelopersAgentToolkit).toHaveBeenCalledWith({});
     expect(StdioServerTransport).toHaveBeenCalled();
   });
 
@@ -88,7 +88,7 @@ describe('main function', () => {
 
     await main();
 
-    expect(MastercardDevelopersMCPServer).toHaveBeenCalledWith({
+    expect(MastercardDevelopersAgentToolkit).toHaveBeenCalledWith({
       service:
         'https://developer.mastercard.com/open-banking-us/documentation/',
     });
@@ -103,7 +103,7 @@ describe('main function', () => {
 
     await main();
 
-    expect(MastercardDevelopersMCPServer).toHaveBeenCalledWith({
+    expect(MastercardDevelopersAgentToolkit).toHaveBeenCalledWith({
       apiSpecification:
         'https://static.developer.mastercard.com/content/test-service/swagger/api.yaml',
     });
@@ -119,7 +119,7 @@ describe('main function', () => {
 
     await main();
 
-    expect(MastercardDevelopersMCPServer).toHaveBeenCalledWith({
+    expect(MastercardDevelopersAgentToolkit).toHaveBeenCalledWith({
       service:
         'https://developer.mastercard.com/payment-gateway/documentation/',
       apiSpecification:
@@ -132,8 +132,8 @@ describe('main function', () => {
 
     const error = new Error('Test error');
     (
-      MastercardDevelopersMCPServer as jest.MockedClass<
-        typeof MastercardDevelopersMCPServer
+      MastercardDevelopersAgentToolkit as jest.MockedClass<
+        typeof MastercardDevelopersAgentToolkit
       >
     ).mockImplementation(() => {
       throw error;
