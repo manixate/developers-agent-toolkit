@@ -174,6 +174,14 @@ npm run start -- --service=https://developer.mastercard.com/open-banking-us/docu
 npm run start -- --api-specification=https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml
 ```
 
+### To build the DXT file
+
+You can build the [DXT](https://github.com/anthropics/dxt) file for one-click installation for Claude Desktop by running:
+
+```bash
+npm run build-dxt
+```
+
 ### Debugging the server
 
 ```bash
