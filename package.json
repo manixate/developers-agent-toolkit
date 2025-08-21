@@ -1,0 +1,35 @@
+{
+  "name": "mastercard-developers-agent-toolkit-monorepo",
+  "version": "0.1.1",
+  "private": true,
+  "description": "Mastercard Developers Agent Toolkit Monorepo",
+  "workspaces": [
+    "typescript",
+    "modelcontextprotocol"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:typescript": "npm run build -w typescript",
+    "build:mcp": "npm run build -w modelcontextprotocol",
+    "build:mcp-dxt": "npm run build-dxt -w modelcontextprotocol",
+    "test": "npm run test --workspaces --if-present",
+    "test:coverage": "npm run test:coverage --workspaces --if-present",
+    "test:typescript": "npm run test -w typescript",
+    "test:mcp": "npm run test -w modelcontextprotocol",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:fix": "npm run lint --workspaces --if-present -- --fix",
+    "format": "npm run format --workspaces --if-present",
+    "format:check": "npm run format:check --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present",
+    "clean:all": "npm run clean && rm -rf node_modules typescript/node_modules modelcontextprotocol/node_modules",
+    "dev:mcp": "npm run watch -w modelcontextprotocol",
+    "start:mcp": "npm run start -w modelcontextprotocol",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
