@@ -120,7 +120,7 @@ Optionally, you can add it to a file called .vscode/mcp.json in your workspace. 
 {
   "mcp": {
     "servers": {
-      "memory": {
+      "mastercard-developers": {
         "command": "npx",
         "args": ["-y", "@mastercard/developers-mcp"]
       }
