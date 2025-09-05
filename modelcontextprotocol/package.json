@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "@mastercard/developers-mcp",
   "homepage": "https://github.com/mastercard/developers-agent-toolkit/tree/main/modelcontextprotocol",
   "description": "MCP server for Mastercard Developers Platform",
@@ -59,7 +59,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@mastercard/developers-agent-toolkit": "0.1.1",
+    "@mastercard/developers-agent-toolkit": "0.1.2",
     "@modelcontextprotocol/sdk": "^1.11.3"
   },
   "lint-staged": {
