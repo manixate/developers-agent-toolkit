@@ -124,7 +124,7 @@ function parseAPISpecificationPathAndServiceId(
     // Try to parse as URL first
     const url = new URL(input);
 
-    // Handle full URL: https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml
+    // Handle full URL: https://static.developer.mastercard.com/content/open-finance-us/swagger/openbanking-us.yaml
     if (url.hostname !== 'static.developer.mastercard.com') {
       return null;
     }

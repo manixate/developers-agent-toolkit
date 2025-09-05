@@ -19,24 +19,24 @@ describe('parseArgs function', () => {
 
     it('should parse valid api-specification-path argument', () => {
       const result = parseArgs([
-        '--api-specification=https://static.developer.mastercard.com/content/open-banking-us/swagger/spec.yaml',
+        '--api-specification=https://static.developer.mastercard.com/content/open-finance-us/swagger/spec.yaml',
       ]);
       expect(result).toEqual({
         apiSpecification:
-          'https://static.developer.mastercard.com/content/open-banking-us/swagger/spec.yaml',
+          'https://static.developer.mastercard.com/content/open-finance-us/swagger/spec.yaml',
       });
     });
 
     it('should parse both arguments together', () => {
       const result = parseArgs([
         '--service=https://developer.mastercard.com/payment-gateway/documentation/',
-        '--api-specification=https://static.developer.mastercard.com/content/open-banking-us/swagger/spec.yaml',
+        '--api-specification=https://static.developer.mastercard.com/content/open-finance-us/swagger/spec.yaml',
       ]);
       expect(result).toEqual({
         service:
           'https://developer.mastercard.com/payment-gateway/documentation/',
         apiSpecification:
-          'https://static.developer.mastercard.com/content/open-banking-us/swagger/spec.yaml',
+          'https://static.developer.mastercard.com/content/open-finance-us/swagger/spec.yaml',
       });
     });
 
@@ -83,14 +83,14 @@ describe('main function', () => {
     process.argv = [
       'node',
       'index.js',
-      '--service=https://developer.mastercard.com/open-banking-us/documentation/',
+      '--service=https://developer.mastercard.com/open-finance-us/documentation/',
     ];
 
     await main();
 
     expect(MastercardDevelopersAgentToolkit).toHaveBeenCalledWith({
       service:
-        'https://developer.mastercard.com/open-banking-us/documentation/',
+        'https://developer.mastercard.com/open-finance-us/documentation/',
     });
   });
 

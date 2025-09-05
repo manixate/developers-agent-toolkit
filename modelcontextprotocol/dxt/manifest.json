@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "display_name": "Mastercard Developers MCP",
   "description": "Access Mastercard Developers APIs, documentation, and specifications through MCP",
-  "long_description": "This extension provides seamless access to Mastercard Developers APIs, comprehensive documentation, and API specifications. It enables developers to query available services, retrieve detailed API operation information, access documentation sections, and get integration guides directly.\n\n**Key Features:**\n- List all available Mastercard services\n- Access comprehensive documentation and specific sections\n- Retrieve OAuth 1.0a and Open Banking integration guides\n- Get detailed API operation information including parameters and schemas\n- Query API specifications and operation details\n\n**Use Cases:**\n- API discovery and exploration\n- Documentation lookup during development\n- Integration planning and implementation\n- Authentication and authorization guidance",
+  "long_description": "This extension provides seamless access to Mastercard Developers APIs, comprehensive documentation, and API specifications. It enables developers to query available services, retrieve detailed API operation information, access documentation sections, and get integration guides directly.\n\n**Key Features:**\n- List all available Mastercard services\n- Access comprehensive documentation and specific sections\n- Retrieve OAuth 1.0a and Open Finance integration guides\n- Get detailed API operation information including parameters and schemas\n- Query API specifications and operation details\n\n**Use Cases:**\n- API discovery and exploration\n- Documentation lookup during development\n- Integration planning and implementation\n- Authentication and authorization guidance",
   "author": {
     "name": "Mastercard Developers",
     "email": "developer@mastercard.com",
@@ -63,8 +63,8 @@
       "description": "Retrieves the comprehensive OAuth 1.0a integration guide including step-by-step instructions, code examples, and best practices for Mastercard APIs."
     },
     {
-      "name": "openbanking-integration-guide",
-      "description": "Retrieves the comprehensive Open Banking integration guide including setup instructions, API usage examples, and implementation best practices."
+      "name": "openfinance-integration-guide",
+      "description": "Retrieves the comprehensive Open Finance integration guide including setup instructions, API usage examples, and implementation best practices."
     }
   ]
 }

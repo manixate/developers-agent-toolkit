@@ -14,7 +14,7 @@ This MCP server acts as a bridge between MCP clients and Mastercard Developers r
 - List available Mastercard services
 - Query API specifications and their operations
 - Access documentation for each service
-- Retrieve integration guides for OAuth 1.0a and Open Banking
+- Retrieve integration guides for OAuth 1.0a and Open Finance
 
 ## Available Tools
 
@@ -40,7 +40,7 @@ This MCP server acts as a bridge between MCP clients and Mastercard Developers r
 
 - **`get-oauth10a-integration-guide`**: Retrieves the comprehensive OAuth 1.0a integration guide including step-by-step instructions, code examples, and best practices for Mastercard APIs.
 
-- **`get-openbanking-integration-guide`**: Retrieves the comprehensive Open Banking integration guide including setup instructions, API usage examples, and implementation best practices.
+- **`get-openfinance-integration-guide`**: Retrieves the comprehensive Open Finance integration guide including setup instructions, API usage examples, and implementation best practices.
 
 ## Configuration Options
 
@@ -78,7 +78,7 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
       "args": [
         "-y",
         "@mastercard/developers-mcp",
-        "--service=https://developer.mastercard.com/open-banking-us/documentation/"
+        "--service=https://developer.mastercard.com/open-finance-us/documentation/"
       ]
     }
   }
@@ -95,7 +95,7 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
       "args": [
         "-y",
         "@mastercard/developers-mcp",
-        "--api-specification=https://developer.mastercard.com/open-banking-us/swagger/openbanking-us.yaml"
+        "--api-specification=https://developer.mastercard.com/open-finance-us/swagger/openbanking-us.yaml"
       ]
     }
   }
@@ -168,10 +168,10 @@ The server runs on stdio and will be available for MCP client connections.
 
 ```bash
 # Pre-configure with a documentation URL
-npm run start -- --service=https://developer.mastercard.com/open-banking-us/documentation/
+npm run start -- --service=https://developer.mastercard.com/open-finance-us/documentation/
 
 # Pre-configure with an API specification path
-npm run start -- --api-specification=https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml
+npm run start -- --api-specification=https://static.developer.mastercard.com/content/open-finance-us/swagger/openbanking-us.yaml
 ```
 
 ### To build the DXT file
@@ -192,4 +192,4 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 - [Mastercard Developers Platform](https://developer.mastercard.com/)
 - [Model Context Protocol](https://modelcontextprotocol.io/)
-- [MCP SDK](https://github.com/modelcontextprotocol/sdk)
+- [MCP SDKs](https://github.com/modelcontextprotocol)

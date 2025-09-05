@@ -72,10 +72,10 @@ describe('buildContext function', () => {
     it('should parse service URL and extract serviceId', () => {
       const result = buildContext({
         service:
-          'https://developer.mastercard.com/open-banking-us/documentation/',
+          'https://developer.mastercard.com/open-finance-us/documentation/',
       });
       expect(result).toEqual({
-        serviceId: 'open-banking-us',
+        serviceId: 'open-finance-us',
       });
     });
 
@@ -104,10 +104,10 @@ describe('buildContext function', () => {
     it('should handle service IDs with hyphens and numbers', () => {
       const result = buildContext({
         service:
-          'https://developer.mastercard.com/open-banking-us-v2/documentation/',
+          'https://developer.mastercard.com/open-finance-us-v2/documentation/',
       });
       expect(result).toEqual({
-        serviceId: 'open-banking-us-v2',
+        serviceId: 'open-finance-us-v2',
       });
     });
   });

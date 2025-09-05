@@ -5,7 +5,7 @@
   <img src="https://developer.mastercard.com/_/_/src/global/assets/svg/mcdev-logo-dark.svg" alt="mastercard developers logo">
 </picture>
 
-The Mastercard Developers Agent Toolkit allows popular agent frameworks (currently Model Context Protocol - MCP) to integrate with [Mastercard Developers Platform](https://developer.mastercard.com) for service discovery and integration guides.
+The Mastercard Developers Agent Toolkit allows popular agent frameworks (currently Model Context Protocol - MCP) to integrate with [Mastercard Developers](https://developer.mastercard.com) for service discovery and integration guides.
 
 ## Key Features
 
@@ -28,7 +28,7 @@ The toolkit provides the following tools for agents to use:
 * `get-documentation-section-content`: Retrieves the complete content for a specific documentation section.
 * `get-documentation-page`: Retrieves the complete content of a specific documentation page.
 * `get-oauth10a-integration-guide`: Retrieves the comprehensive OAuth 1.0a integration guide.
-* `get-openbanking-integration-guide`: Retrieves the comprehensive Open Banking integration guide.
+* `get-openfinance-integration-guide`: Retrieves the comprehensive Open Finance integration guide.
 
 ### API Operations
 
