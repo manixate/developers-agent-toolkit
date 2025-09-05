@@ -20,6 +20,7 @@ export const getParameters = (_context: ToolContext): z.ZodObject<any> => {
         'javascript',
         'typescript',
         'golang',
+        'others',
       ])
       .optional()
       .describe(
