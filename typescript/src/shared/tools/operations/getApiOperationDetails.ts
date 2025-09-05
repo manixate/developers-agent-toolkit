@@ -19,10 +19,10 @@ It takes two arguments:
   return `${baseDescription}
 
 It takes three arguments:
-- apiSpecificationPath (str): The path to the API specification file (e.g. The path would be /open-finance-us/swagger/openfinance-us.yaml for
-https://static.developer.mastercard.com/content/open-finance-us/swagger/openfinance-us.yaml,
-https://developer.mastercard.com/open-finance-us/swagger/openfinance-us.yaml,
-or /open-finance-us/swagger/openfinance-us.yaml)
+- apiSpecificationPath (str): The path to the API specification file (e.g. The path would be /open-finance-us/swagger/openbanking-us.yaml for
+https://static.developer.mastercard.com/content/open-finance-us/swagger/openbanking-us.yaml,
+https://developer.mastercard.com/open-finance-us/swagger/openbanking-us.yaml,
+or /open-finance-us/swagger/openbanking-us.yaml)
 - method (str): The HTTP method of the operation (e.g., GET, POST, PUT, DELETE)
 - path (str): The API endpoint path from the specification (e.g., /payments, /accounts/{id})`;
 };
@@ -49,7 +49,7 @@ export const getParameters = (context: ToolContext): z.ZodObject<any> => {
     apiSpecificationPath: z
       .string()
       .describe(
-        'The path to the API specification (e.g., /open-finance-us/swagger/openfinance-us.yaml)'
+        'The path to the API specification (e.g., /open-finance-us/swagger/openbanking-us.yaml)'
       ),
     ...baseParams,
   });

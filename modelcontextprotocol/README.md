@@ -95,7 +95,7 @@ To use this server with MCP clients like Claude Desktop, add it to your MCP conf
       "args": [
         "-y",
         "@mastercard/developers-mcp",
-        "--api-specification=https://developer.mastercard.com/open-finance-us/swagger/openfinance-us.yaml"
+        "--api-specification=https://developer.mastercard.com/open-finance-us/swagger/openbanking-us.yaml"
       ]
     }
   }
@@ -171,7 +171,7 @@ The server runs on stdio and will be available for MCP client connections.
 npm run start -- --service=https://developer.mastercard.com/open-finance-us/documentation/
 
 # Pre-configure with an API specification path
-npm run start -- --api-specification=https://static.developer.mastercard.com/content/open-finance-us/swagger/openfinance-us.yaml
+npm run start -- --api-specification=https://static.developer.mastercard.com/content/open-finance-us/swagger/openbanking-us.yaml
 ```
 
 ### To build the DXT file

@@ -15,7 +15,7 @@ Uses the configured API specification: ${context.apiSpecificationPath}`;
   return `${baseDescription}
 
 It takes one argument:
-- apiSpecificationPath (str): The path to the API specification file e.g., '/open-finance-us/swagger/openfinance-us.yaml')`;
+- apiSpecificationPath (str): The path to the API specification file e.g., '/open-finance-us/swagger/openbanking-us.yaml')`;
 };
 
 export const getParameters = (context: ToolContext): z.ZodObject<any> => {
@@ -27,7 +27,7 @@ export const getParameters = (context: ToolContext): z.ZodObject<any> => {
     apiSpecificationPath: z
       .string()
       .describe(
-        'The path to the API specification file (e.g., /open-finance-us/swagger/openfinance-us.yaml)'
+        'The path to the API specification file (e.g., /open-finance-us/swagger/openbanking-us.yaml)'
       ),
   });
 };

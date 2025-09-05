@@ -146,7 +146,7 @@ describe('MastercardAPIClient', () => {
         const requestUrl = new URL(urlString);
         expect(requestUrl.searchParams.get('summary')).toBe('true');
         expect(urlString).toBe(
-          mcd('/open-finance-us/swagger/openfinance-us.yaml?summary=true')
+          mcd('/open-finance-us/swagger/openbanking-us.yaml?summary=true')
         );
         return Promise.resolve({
           ok: true,
@@ -156,7 +156,7 @@ describe('MastercardAPIClient', () => {
       });
 
       const result = await client.getApiOperations(
-        '/open-finance-us/swagger/openfinance-us.yaml'
+        '/open-finance-us/swagger/openbanking-us.yaml'
       );
       expect(result).toBe('operations list');
     });
@@ -177,7 +177,7 @@ describe('MastercardAPIClient', () => {
         expect(requestUrl.searchParams.get('path')).toBe('/accounts');
         expect(urlString).toBe(
           mcd(
-            '/open-finance-us/swagger/openfinance-us.yaml?method=GET&path=%2Faccounts'
+            '/open-finance-us/swagger/openbanking-us.yaml?method=GET&path=%2Faccounts'
           )
         );
         return Promise.resolve({
@@ -188,7 +188,7 @@ describe('MastercardAPIClient', () => {
       });
 
       const result = await client.getApiOperationDetails(
-        '/open-finance-us/swagger/openfinance-us.yaml',
+        '/open-finance-us/swagger/openbanking-us.yaml',
         'GET',
         '/accounts'
       );
