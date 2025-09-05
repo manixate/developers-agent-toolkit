@@ -3,8 +3,8 @@ import { Tool, ToolContext } from '@/shared/types';
 import api from '@/shared/api';
 
 const getDescription = (_context: ToolContext): string => {
-  return `Retrieves the comprehensive Open Finance integration guide including setup instructions,
-API usage examples, and implementation best practices.`;
+  return `Retrieves the comprehensive Open Finance (previously known as Open Banking) integration 
+guide including setup instructions, API usage examples, and implementation best practices.`;
 };
 
 export const getParameters = (_context: ToolContext): z.ZodObject<any> => {
