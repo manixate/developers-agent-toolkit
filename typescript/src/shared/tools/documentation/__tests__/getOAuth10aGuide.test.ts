@@ -54,7 +54,19 @@ describe('execute', () => {
     }
   );
 
-  it('should fallback to API when GitHub fetch fails', async () => {
+  it('should fetch our oauth1.0a guide when language is not supported', async () => {
+    const mockApiResult = 'mock OAuth 1.0a guide content from API';
+    mockApi.getDocumentationPage.mockResolvedValue(mockApiResult);
+
+    const result = await execute({}, { language: 'others' });
+
+    expect(mockApi.getDocumentationPage).toHaveBeenCalledWith(
+      '/platform/documentation/authentication/using-oauth-1a-to-access-mastercard-apis/index.md'
+    );
+    expect(result).toBe(mockApiResult);
+  });
+
+  it('should fallback to generic oauth1.0a guide when GitHub fetch fails', async () => {
     const mockApiResult = 'mock OAuth 1.0a guide content from API';
     mockFetch.mockResolvedValue({
       ok: false,
