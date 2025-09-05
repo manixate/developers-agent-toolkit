@@ -5,7 +5,7 @@ import { getDocumentation } from '@/shared/tools/documentation/getDocumentation'
 import { getDocumentationSection } from '@/shared/tools/documentation/getDocumentationSection';
 import { getDocumentationPage } from '@/shared/tools/documentation/getDocumentationPage';
 import { getOAuth10aGuide } from '@/shared/tools/documentation/getOAuth10aGuide';
-import { getOpenBankingGuide } from '@/shared/tools/documentation/getOpenBankingGuide';
+import { getOpenFinanceGuide } from '@/shared/tools/documentation/getOpenFinanceGuide';
 
 // Services tools
 import { getServicesList } from '@/shared/tools/services/getServicesList';
@@ -23,7 +23,7 @@ export const tools = (context: ToolContext): Tool[] => [
   getDocumentationSection(context),
   getDocumentationPage(context),
   getOAuth10aGuide(context),
-  getOpenBankingGuide(context),
+  getOpenFinanceGuide(context),
 
   // API Operations
   getApiOperationList(context),
