@@ -63,7 +63,7 @@ describe('MastercardAPIClient', () => {
         const requestUrl = new URL(urlString);
         expect(requestUrl.searchParams.get('absolute_urls')).toBe('false');
         expect(urlString).toBe(
-          mcd('/open-banking-us/documentation/llms.txt?absolute_urls=false')
+          mcd('/open-finance-us/documentation/llms.txt?absolute_urls=false')
         );
         return Promise.resolve({
           ok: true,
@@ -72,7 +72,7 @@ describe('MastercardAPIClient', () => {
         } as Response);
       });
 
-      const result = await client.getDocumentation('open-banking-us');
+      const result = await client.getDocumentation('open-finance-us');
       expect(result).toBe('documentation content');
     });
   });
@@ -88,7 +88,7 @@ describe('MastercardAPIClient', () => {
         );
         expect(urlString).toBe(
           mcd(
-            '/open-banking-us/documentation/llms-full.txt?absolute_urls=false&section_id=getting-started'
+            '/open-finance-us/documentation/llms-full.txt?absolute_urls=false&section_id=getting-started'
           )
         );
         return Promise.resolve({
@@ -99,7 +99,7 @@ describe('MastercardAPIClient', () => {
       });
 
       const result = await client.getDocumentationSection(
-        'open-banking-us',
+        'open-finance-us',
         'getting-started'
       );
       expect(result).toBe('section content');
@@ -111,7 +111,7 @@ describe('MastercardAPIClient', () => {
       mockFetch.mockImplementation((url: RequestInfo) => {
         const urlString = url.toString();
         expect(urlString).toBe(
-          mcd('/open-banking-us/documentation/api-basics')
+          mcd('/open-finance-us/documentation/api-basics')
         );
         return Promise.resolve({
           ok: true,
@@ -121,7 +121,7 @@ describe('MastercardAPIClient', () => {
       });
 
       const result = await client.getDocumentationPage(
-        '/open-banking-us/documentation/api-basics'
+        '/open-finance-us/documentation/api-basics'
       );
       expect(result).toBe('page content');
     });
@@ -146,7 +146,7 @@ describe('MastercardAPIClient', () => {
         const requestUrl = new URL(urlString);
         expect(requestUrl.searchParams.get('summary')).toBe('true');
         expect(urlString).toBe(
-          mcd('/open-banking-us/swagger/openbanking-us.yaml?summary=true')
+          mcd('/open-finance-us/swagger/openfinance-us.yaml?summary=true')
         );
         return Promise.resolve({
           ok: true,
@@ -156,7 +156,7 @@ describe('MastercardAPIClient', () => {
       });
 
       const result = await client.getApiOperations(
-        '/open-banking-us/swagger/openbanking-us.yaml'
+        '/open-finance-us/swagger/openfinance-us.yaml'
       );
       expect(result).toBe('operations list');
     });
@@ -177,7 +177,7 @@ describe('MastercardAPIClient', () => {
         expect(requestUrl.searchParams.get('path')).toBe('/accounts');
         expect(urlString).toBe(
           mcd(
-            '/open-banking-us/swagger/openbanking-us.yaml?method=GET&path=%2Faccounts'
+            '/open-finance-us/swagger/openfinance-us.yaml?method=GET&path=%2Faccounts'
           )
         );
         return Promise.resolve({
@@ -188,7 +188,7 @@ describe('MastercardAPIClient', () => {
       });
 
       const result = await client.getApiOperationDetails(
-        '/open-banking-us/swagger/openbanking-us.yaml',
+        '/open-finance-us/swagger/openfinance-us.yaml',
         'GET',
         '/accounts'
       );
