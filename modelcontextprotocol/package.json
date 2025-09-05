@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "@mastercard/developers-agent-toolkit": "0.1.1",
-    "@modelcontextprotocol/sdk": "^1.11.3"
+    "@modelcontextprotocol/sdk": "^1.17.0"
   },
   "lint-staged": {
     "*.{mjs,js,jsx,ts,tsx}": [
